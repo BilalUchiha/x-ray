@@ -10,14 +10,15 @@ No Git. No GitHub. No accounts. No X-Ray server. Nothing is written into your pr
 
 ## Install and run
 
-One command installs it, one command runs it.
+One command installs it, one command runs it. After that, `x-ray` is the only thing you need.
 
 ```bash
-npm install -g github:BilalUchiha/x-ray
-x-ray
+npm install -g github:BilalUchiha/x-ray     # once
+x-ray                                        # every time after that
 ```
 
-That prints where it is serving and opens your browser at it:
+`x-ray` serves the app on loopback and **opens your browser at it**, so there is nothing to open
+by hand:
 
 ```
   X-Ray is running
@@ -29,11 +30,22 @@ That prints where it is serving and opens your browser at it:
   Ctrl+C to stop.
 ```
 
-Click **Choose Folder** and pick any project on your machine — no Git repository needed, no
-account, nothing to configure. Pick works in a second or two; **Explore sample project** maps a
-small C# service bundled with the app if you just want to look around first.
+Then, in the page:
 
-Ran it once already? `x-ray` is all you need from then on — the install step is one-time.
+1. Click **Choose Folder** and pick any project on your machine — a Git repository is not
+   required, there is no account and nothing to configure. The folder is opened read-only.
+2. Watch it scan and parse, then explore the map: click a box to select it, use the `+`/`−`
+   control to fold a subtree out of the way, search, and ask the AI panel a question if you have
+   configured an endpoint.
+3. **Explore sample project** maps a small C# service bundled with the app, if you would rather
+   look around before pointing X-Ray at your own code.
+
+Requirements are just **Node 18+** and a Chromium-based browser for the folder picker (see below),
+on Windows, macOS or Linux. The first install compiles the app — `npm` runs the project's
+`prepare` script — so it takes a minute; every run of `x-ray` after that starts instantly.
+
+X-Ray is not published to the npm registry yet, so install it straight from GitHub as above.
+The package name in `package.json` is `x-ray-codebase`.
 
 <details>
 <summary>Other ways to run it</summary>
@@ -311,3 +323,7 @@ Git of any kind (including reading `.git`; it is skipped only because it is irre
 source), hosted repositories, commits/branches/PRs, uploading code anywhere, modifying the analysed
 project, generating or applying code changes, autonomous agents, cloud sync, user accounts, an
 X-Ray backend, and X-Ray-hosted models.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
