@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.freebuff/
+dist-ssr/
+*.local
+.vite/
+*.tsbuildinfo
+.DS_Store
+*.log

@@ -1,0 +1,62 @@
+{
+  "name": "x-ray-codebase",
+  "version": "0.1.0",
+  "private": false,
+  "description": "X-Ray — see how your codebase works. A local-first visual explorer for any folder: projects, layers, types, relationships and impact, with an optional AI layer you point at your own endpoint.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "codebase",
+    "visualization",
+    "architecture",
+    "dependencies",
+    "impact-analysis",
+    "static-analysis",
+    "local-first",
+    "cli"
+  ],
+  "bin": {
+    "x-ray": "bin/x-ray.mjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BilalUchiha/x-ray.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BilalUchiha/x-ray/issues"
+  },
+  "homepage": "https://github.com/BilalUchiha/x-ray#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "start": "node bin/x-ray.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc -b && tsc --noEmit -p tsconfig.app.json",
+    "check:parser": "esbuild scripts/parser-check.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/parser-check.mjs && node node_modules/.cache/parser-check.mjs",
+    "check:engine": "esbuild scripts/engine-check.ts --bundle --platform=node --format=esm --external:node:* --log-level=warning --outfile=node_modules/.cache/engine-check.mjs && node node_modules/.cache/engine-check.mjs",
+    "check:ai": "esbuild scripts/ai-check.ts --bundle --platform=node --format=esm --log-level=warning --outfile=node_modules/.cache/ai-check.mjs && node node_modules/.cache/ai-check.mjs",
+    "mock:ai": "node scripts/mock-ai-server.mjs",
+    "check:fixtures": "esbuild scripts/make-fixtures.ts --bundle --platform=node --format=esm --external:node:* --log-level=warning --outfile=node_modules/.cache/make-fixtures.mjs && esbuild scripts/scan-check.ts --bundle --platform=node --format=esm --external:node:* --log-level=warning --outfile=node_modules/.cache/scan-check.mjs && node node_modules/.cache/make-fixtures.mjs node_modules/.cache/xray-fixtures && node node_modules/.cache/scan-check.mjs node_modules/.cache/xray-fixtures/dotnet && node node_modules/.cache/scan-check.mjs node_modules/.cache/xray-fixtures/django && node node_modules/.cache/scan-check.mjs node_modules/.cache/xray-fixtures/fullstack && node node_modules/.cache/scan-check.mjs node_modules/.cache/xray-fixtures/markerless",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}
